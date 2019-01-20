@@ -8,9 +8,12 @@
 
 import UIKit
 import WebKit
+import CoreData
 
 class ViewController: UIViewController {
-    private var url:String?
+    private var dataProxy = DataProxy(dataContext: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+    
+    private var viewController:HistoryTVC?
     
     @IBOutlet weak var webView: WKWebView!
     
@@ -20,8 +23,9 @@ class ViewController: UIViewController {
         webView.navigationDelegate = self
     }
     
-    func browse() {
-        if let url = URL(string: url!) {
+    func browse(newUrl:String) {
+        if let url = URL(string: newUrl) {
+            dataProxy.onNewBrowse(url: newUrl)
             let request = URLRequest(url: url)
             webView.load(request)
         }
@@ -43,9 +47,9 @@ extension ViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
-        url = textField.text
+        let url = textField.text
         guard url != nil, url!.count > 0 else {return true}
-        browse()
+        browse(newUrl: url!)
         
         return true
     }
@@ -57,11 +61,9 @@ extension ViewController : WKNavigationDelegate {
         print(#function)
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!)
-    {
-        webView.evaluateJavaScript("navigator.userAgent", completionHandler: { result, error in
-            //code here
-        })
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        dataProxy.onCompletion()
+        print(#function)
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -69,26 +71,47 @@ extension ViewController : WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print(#function)
         if (navigationAction.navigationType == .linkActivated){
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
         }
-       // decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
-        
         print(#function)
+        dataProxy.onRedirect(redirectUrl: webView.url!.absoluteString)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        let response = navigationResponse.response
-        print(response.url?.absoluteString ?? "")
         decisionHandler(.allow)
-        
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (viewController == nil) {
+            viewController = (segue.destination as! HistoryTVC)
+        }
+        DispatchQueue.global(qos: .background).async {
+            self.fetchData { (urlItems, error) in
+                self.viewController!.urlItems = urlItems
+            }
+        }
+    }
+    
+    
+    func fetchData(completion: @escaping ([Url]?, Error?) -> Void) {
+        
+        let urlHistory = dataProxy.getUrlHistory()
+        guard urlHistory != nil else {return}
+        DispatchQueue.main.async {
+            completion(urlHistory!, nil)
+        }
+    }
+    
+    
+    
+    
 }
 
 extension WKWebView {
@@ -99,3 +122,4 @@ extension WKWebView {
         }
     }
 }
+

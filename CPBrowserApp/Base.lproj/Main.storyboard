@@ -69,7 +69,13 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="NN0-NN-0uP"/>
+                    <navigationItem key="navigationItem" id="NN0-NN-0uP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="XL8-7G-nja">
+                            <connections>
+                                <segue destination="uWG-aY-rWQ" kind="show" id="4tx-nk-hr0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="textField" destination="oSf-GC-5zZ" id="jTX-0s-ba7"/>
@@ -89,7 +95,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Z2g-3c-P16">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Z2g-3c-P16">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z2g-3c-P16" id="v1t-6Y-AGh">
@@ -126,4 +132,7 @@
             <point key="canvasLocation" x="-660" y="134"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="mpX-LX-jIV"/>
+    </inferredMetricsTieBreakers>
 </document>

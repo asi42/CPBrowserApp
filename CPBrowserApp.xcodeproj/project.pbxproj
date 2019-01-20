@@ -14,6 +14,7 @@
 		B0EA0A8521F3250C000D06B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0EA0A8421F3250C000D06B7 /* Assets.xcassets */; };
 		B0EA0A8821F3250C000D06B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0EA0A8621F3250C000D06B7 /* LaunchScreen.storyboard */; };
 		B0EA0A9121F3285D000D06B7 /* HistoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA0A9021F3285D000D06B7 /* HistoryTVC.swift */; };
+		B0EA0A9821F460DA000D06B7 /* DataProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA0A9721F460DA000D06B7 /* DataProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B0EA0A8721F3250C000D06B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0EA0A8921F3250C000D06B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0EA0A9021F3285D000D06B7 /* HistoryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryTVC.swift; path = CPBrowserApp/HistoryTVC.swift; sourceTree = SOURCE_ROOT; };
+		B0EA0A9721F460DA000D06B7 /* DataProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		B0EA0A7921F324EF000D06B7 /* CPBrowserApp */ = {
 			isa = PBXGroup;
 			children = (
+				B0EA0A9621F460AC000D06B7 /* Model */,
 				B0EA0A7A21F324F0000D06B7 /* AppDelegate.swift */,
 				B0EA0A8F21F3281E000D06B7 /* VCs */,
 				B0EA0A7E21F324F0000D06B7 /* Main.storyboard */,
@@ -76,6 +79,14 @@
 				B0EA0A9021F3285D000D06B7 /* HistoryTVC.swift */,
 			);
 			path = VCs;
+			sourceTree = "<group>";
+		};
+		B0EA0A9621F460AC000D06B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B0EA0A9721F460DA000D06B7 /* DataProxy.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0EA0A9121F3285D000D06B7 /* HistoryTVC.swift in Sources */,
+				B0EA0A9821F460DA000D06B7 /* DataProxy.swift in Sources */,
 				B0EA0A7D21F324F0000D06B7 /* ViewController.swift in Sources */,
 				B0EA0A8321F324F0000D06B7 /* CPBrowserApp.xcdatamodeld in Sources */,
 				B0EA0A7B21F324F0000D06B7 /* AppDelegate.swift in Sources */,
