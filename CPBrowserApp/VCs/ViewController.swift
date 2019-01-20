@@ -72,11 +72,12 @@ extension ViewController : WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print(#function)
-        if (navigationAction.navigationType == .linkActivated){
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
+//        if (navigationAction.navigationType == .linkActivated){
+//            decisionHandler(.cancel)
+//        } else {
+//            decisionHandler(.allow)
+//        }
+        decisionHandler(.allow)
     }
     
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
